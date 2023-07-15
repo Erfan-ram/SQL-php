@@ -32,6 +32,7 @@
 
     <pre>
     <?php
+
     echo "<per>";
     if ($_POST) {
         print_r($_POST);
@@ -70,6 +71,7 @@
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 print_r($row);
+                echo "\n\n";
             }
         }
     }
@@ -104,14 +106,14 @@
 
         if ($_POST['dbName']) {
             $myDB = new mysqli($dbhost, $dbuser, $dbpass, $_POST['dbName']);
-            $result = getDatabaseTables($myDB);
-            echo 'lenght :  ' . count($result) . "\n\n";
-            foreach ($result as $value) {
+            $Tablenames = getDatabaseTables($myDB);
+            echo 'lenght :  ' . count($Tablenames) . "\n\n";
+            foreach ($Tablenames as $value) {
                 echo $value . "\n";
             }
 
             if ($_POST['dbTable']) {
-                getDatabasequery($myDB,$_POST['dbTable']);
+                getDatabasequery($myDB, $_POST['dbTable']);
             }
 
             $myDB->close();
@@ -123,9 +125,15 @@
     <form action="db_name.php" method="post">
 
         <label for="id1">Databae name:</label>
-        <input type="text" id='id1' name="dbName" value="<?php echo $_POST['dbName'] ?? ''; ?>">
+        <!-- <input type="text" id='id1' name="dbName" value="<?php //echo $_POST['dbName'] ?? ''; ?>"> -->
+        <select name="dbName">
+            <?php foreach ($databases as $name) { ?>
+                <option value="<?php echo $name; ?>" <?php if ($name == $_POST['dbName']) { echo 'selected="selected"'; }?>><?php echo $name; ?></option>
+            <?php } ?>
+        </select>
 
-        <input type="text" name="dbTable" >
+        <label for="id2">tables name:</label>
+        <input type="text" name="dbTable" value="<?php echo $_POST['dbTable'] ?? ''; ?>" >
 
         <input type="submit" name="submit">
     </form>
