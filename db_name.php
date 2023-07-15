@@ -69,8 +69,6 @@
         return $tableNmaes;
     }
 
-
-    // Call the function to retrieve database names
     $databases = getDatabaseNames($mysqli);
 
     // Output the database names
@@ -78,7 +76,6 @@
         echo $database . "<br />";
     }
 
-    // Close the MySQL connection
     $mysqli->close();
 
     if ($_POST) {
