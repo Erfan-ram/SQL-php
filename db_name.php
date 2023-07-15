@@ -3,28 +3,7 @@
 
 <head>
     <title>PHP Execution Results</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f1f1f1;
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        pre {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            overflow: auto;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -125,10 +104,13 @@
     <form action="db_name.php" method="post">
 
         <label for="id1">Databae name:</label>
-        <!-- <input type="text" id='id1' name="dbName" value="<?php //echo $_POST['dbName'] ?? ''; ?>"> -->
+        <!-- <input type="text" id='id1' name="dbName" value="<?php //echo $_POST['dbName'] ?? ''; 
+                                                                ?>"> -->
         <select name="dbName">
             <?php foreach ($databases as $name) { ?>
-                <option value="<?php echo $name; ?>" <?php if ($name == $_POST['dbName']) { echo 'selected="selected"'; }?>><?php echo $name; ?></option>
+                <option value="<?php echo $name; ?>" <?php if ($name == $_POST['dbName']) {
+                                                            echo 'selected="selected"';
+                                                        } ?>><?php echo $name; ?></option>
             <?php } ?>
         </select>
 
